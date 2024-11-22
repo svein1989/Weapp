@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 顶部八个选项卡 -->
+  <view class="grid-container">
+    <van-grid column-num="4" border="{{ false }}">
+      <van-grid-item 
+        wx:for="{{ gridItems }}" 
+        wx:key="id"
+        icon="{{ item.icon }}"
+        text="{{ item.text }}"
+        bind:click="onGridItemClick"
+        data-id="{{ item.id }}"
+      />
+    </van-grid>
+  </view>
+
+  <!-- 二级页面列表 -->
+  <scroll-view 
+    class="sub-pages"
+    scroll-y
+    bindscrolltolower="loadMore"
+  >
+    <view 
+      class="sub-page-item"
+      wx:for="{{ subPages }}"
+      wx:key="id"
+      bindtap="onSubPageClick"
+      data-id="{{ item.id }}"
+    >
+      <image class="sub-page-image" src="{{ item.image }}" mode="aspectFill"></image>
+      <view class="sub-page-content">
+        <text class="sub-page-title">{{ item.title }}</text>
+        <text class="sub-page-desc">{{ item.description }}</text>
+      </view>
+      <view class="sub-page-arrow">></view>
+    </view>
+    
+    <!-- 加载状态 -->
+    <view class="loading-status">
+      {{ hasMore ? '加载中...' : '已经到底啦~' }}
+    </view>
+  </scroll-view>
+
+  <!-- 底部导航栏 -->
+  <van-tabbar active="{{ activeTab }}" bind:change="onTabChange">
+    <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+    <van-tabbar-item icon="friends-o">关于我们</van-tabbar-item>
+    <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+  </van-tabbar>
+</view> 
