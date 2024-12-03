@@ -1,0 +1,84 @@
+<view class="container">
+  <!-- 地区选项卡 -->
+  <scroll-view 
+    class="region-tabs" 
+    scroll-x 
+    enable-flex 
+    scroll-with-animation
+    scroll-into-view="region-{{currentRegion}}"
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <view class="tabs-container">
+      <view 
+        wx:for="{{ regions }}" 
+        wx:key="id"
+        id="region-{{item.id}}"
+        class="region-tab {{ currentRegion === item.id ? 'active' : '' }}"
+        bindtap="switchRegion"
+        data-id="{{ item.id }}"
+      >
+        {{ item.name }}
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 搜索栏 -->
+  <view class="search-box">
+    <input 
+      class="search-input" 
+      placeholder="搜索学校名称、地点或专业" 
+      value="{{ searchKey }}"
+      bindinput="onSearchInput"
+      bindconfirm="onSearch"
+    />
+    <view class="search-btn" bindtap="onSearch">搜索</view>
+  </view>
+
+  <!-- 学校列表 -->
+  <scroll-view 
+    class="school-list"
+    scroll-y
+    bindscrolltolower="loadMore"
+    refresher-enabled
+    bindrefresherrefresh="onRefresh"
+    refresher-triggered="{{isRefreshing}}"
+  >
+    <block wx:if="{{ schools.length === 0 }}">
+      <!-- 空状态显示 -->
+      <view class="empty-state">
+        <image class="empty-icon" src="/images/icons/empty.png" mode="aspectFit"/>
+        <text class="empty-text">暂无相关院校信息</text>
+        <text class="empty-subtext">敬请期待更多院校信息更新</text>
+      </view>
+    </block>
+    <block wx:else>
+      <!-- 学校列表 -->
+      <view 
+        wx:for="{{ schools }}" 
+        wx:key="id"
+        class="school-item"
+        bindtap="goToSchool"
+        data-id="{{ item.id }}"
+      >
+        <image 
+          class="school-logo" 
+          src="{{ item.logo }}" 
+          mode="aspectFill"
+          binderror="onLogoError"
+          data-index="{{ index }}"
+        />
+        <view class="school-info">
+          <text class="school-name">{{ item.name }}</text>
+          <text class="school-location">{{ item.location }}</text>
+        </view>
+        <text class="detail-arrow">详情 ></text>
+      </view>
+
+      <!-- 底部提示 -->
+      <view class="bottom-tip">
+        {{ hasMore ? '加载中...' : '我也是有底线的~' }}
+      </view>
+    </block>
+  </scroll-view>
+</view> 

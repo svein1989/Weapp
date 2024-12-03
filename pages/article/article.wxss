@@ -1,0 +1,55 @@
+.article-container {
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .article-header {
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  
+  .article-meta {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-size: 14px;
+  }
+  
+  .publish-time {
+    margin-right: 16px;
+  }
+  
+  .article-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  .text-block {
+    margin-bottom: 16px;
+    white-space: pre-wrap;
+  }
+  
+  .image-block {
+    margin: 20px 0;
+  }
+  
+  .image-block image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .image-caption {
+    display: block;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 8px;
+  } 
