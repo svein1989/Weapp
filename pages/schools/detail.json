@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "院校详情",
-    "usingComponents": {
-      "van-icon": "@vant/weapp/icon/index",
-      "van-popup": "@vant/weapp/popup/index"
-    }
-  } 

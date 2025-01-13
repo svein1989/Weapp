@@ -27,13 +27,8 @@
     "useApiHook": true,
     "useApiHostProcess": true,
     "showShadowRootInWxmlPanel": true,
-    "packNpmManually": true,
-    "packNpmRelationList": [
-      {
-        "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./"
-      }
-    ],
+    "packNpmManually": false,
+    "packNpmRelationList": [],
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -41,8 +36,8 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.4",
-  "appid": "wx84e3c1661bd7dcd1",
+  "libVersion": "2.25.3",
+  "appid": "touristappid",
   "projectname": "留学助手",
   "condition": {},
   "editorSetting": {

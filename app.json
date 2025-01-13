@@ -1,17 +1,12 @@
 {
     "pages": [
-      "pages/index/index",
-      "pages/article/article",
-      "pages/schools/schools",
-      "pages/schools/detail",
-      "pages/ranking/ranking",
-      "pages/experience/experience"
+      "pages/index/index"
     ],
     "window": {
       "backgroundTextStyle": "light",
-      "navigationBarBackgroundColor": "#42B983",
+      "navigationBarBackgroundColor": "#fff",
       "navigationBarTitleText": "留学助手",
-      "navigationBarTextStyle": "white"
+      "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json"
   } 

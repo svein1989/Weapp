@@ -1,26 +1,16 @@
 <view class="container">
   <!-- 顶部八个选项卡 -->
   <view class="grid-container">
-    <view class="grid-wrapper">
-      <view class="grid-row">
-        <!-- 第一行4个 -->
-        <view class="grid-item" wx:for="{{ gridItems }}" wx:key="id" wx:if="{{ index < 4 }}" bindtap="onGridItemClick" data-id="{{ item.id }}">
-          <view class="grid-icon-box">
-            <image class="grid-icon-image" src="{{ item.icon }}" mode="aspectFit"/>
-          </view>
-          <text class="grid-text">{{ item.text }}</text>
-        </view>
-      </view>
-      <view class="grid-row">
-        <!-- 第二行4个 -->
-        <view class="grid-item" wx:for="{{ gridItems }}" wx:key="id" wx:if="{{ index >= 4 }}" bindtap="onGridItemClick" data-id="{{ item.id }}">
-          <view class="grid-icon-box">
-            <image class="grid-icon-image" src="{{ item.icon }}" mode="aspectFit"/>
-          </view>
-          <text class="grid-text">{{ item.text }}</text>
-        </view>
-      </view>
-    </view>
+    <van-grid column-num="4" border="{{ false }}">
+      <van-grid-item 
+        wx:for="{{ gridItems }}" 
+        wx:key="id"
+        icon="{{ item.icon }}"
+        text="{{ item.text }}"
+        bind:click="onGridItemClick"
+        data-id="{{ item.id }}"
+      />
+    </van-grid>
   </view>
 
   <!-- 二级页面列表 -->
@@ -29,56 +19,29 @@
     scroll-y
     bindscrolltolower="loadMore"
   >
-    <!-- 置顶文章 -->
-    <view class="pinned-section" wx:if="{{ pinnedPages.length > 0 }}">
-      <view class="section-title">置顶文章</view>
-      <view 
-        class="sub-page-item pinned"
-        wx:for="{{ pinnedPages }}"
-        wx:key="id"
-        bindtap="onSubPageClick"
-        data-id="{{ item.id }}"
-      >
-        <image class="sub-page-image" src="{{ item.thumbnail }}" mode="aspectFill"></image>
-        <view class="sub-page-content">
-          <text class="sub-page-title">{{ item.title }}</text>
-          <text class="sub-page-desc">{{ item.description }}</text>
-          <view class="sub-page-meta">
-            <text class="publish-time">{{ item.publishTime }}</text>
-            <text class="pin-tag">置顶</text>
-          </view>
-        </view>
+    <view 
+      class="sub-page-item"
+      wx:for="{{ subPages }}"
+      wx:key="id"
+      bindtap="onSubPageClick"
+      data-id="{{ item.id }}"
+    >
+      <image class="sub-page-image" src="{{ item.image }}" mode="aspectFill"></image>
+      <view class="sub-page-content">
+        <text class="sub-page-title">{{ item.title }}</text>
+        <text class="sub-page-desc">{{ item.description }}</text>
       </view>
-    </view>
-
-    <!-- 普通文章 -->
-    <view class="normal-section">
-      <view class="section-title">最新文章</view>
-      <view 
-        class="sub-page-item"
-        wx:for="{{ subPages }}"
-        wx:key="id"
-        bindtap="onSubPageClick"
-        data-id="{{ item.id }}"
-      >
-        <image class="sub-page-image" src="{{ item.thumbnail }}" mode="aspectFill"></image>
-        <view class="sub-page-content">
-          <text class="sub-page-title">{{ item.title }}</text>
-          <text class="sub-page-desc">{{ item.description }}</text>
-          <view class="sub-page-meta">
-            <text class="publish-time">{{ item.publishTime }}</text>
-          </view>
-        </view>
-      </view>
+      <view class="sub-page-arrow">></view>
     </view>
     
+    <!-- 加载状态 -->
     <view class="loading-status">
       {{ hasMore ? '加载中...' : '已经到底啦~' }}
     </view>
   </scroll-view>
 
   <!-- 底部导航栏 -->
-  <van-tabbar active="{{ activeTab }}" bind:change="onTabChange" active-color="#42B983">
+  <van-tabbar active="{{ activeTab }}" bind:change="onTabChange">
     <van-tabbar-item icon="home-o">首页</van-tabbar-item>
     <van-tabbar-item icon="friends-o">关于我们</van-tabbar-item>
     <van-tabbar-item icon="user-o">我的</van-tabbar-item>
