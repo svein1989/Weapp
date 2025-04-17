@@ -1,0 +1,72 @@
+<view class="container">
+  <view class="content-wrapper">
+    <view class="header">
+      <image class="university-logo" src="{{case.universityLogo}}" mode="aspectFit"/>
+      <view class="header-info">
+        <view class="major-name">{{case.majorName}}</view>
+        <view class="major-name-en">{{case.majorNameEn}}</view>
+        <view class="university-name">{{case.universityName}}</view>
+        <view class="publish-time">发布时间：{{case.publishTime}}</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">申请背景</view>
+      <view class="section-content">{{case.background}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">申请时间线</view>
+      <view class="timeline">
+        <view class="timeline-item" wx:for="{{case.timeline}}" wx:key="date">
+          <view class="timeline-date">{{item.date}}</view>
+          <view class="timeline-event">{{item.event}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">学校介绍</view>
+      <view class="section-content">{{case.universityIntro}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">专业介绍</view>
+      <view class="section-content">{{case.majorIntro}}</view>
+    </view>
+
+    <view class="info-grid">
+      <view class="info-item">
+        <view class="info-label">学制</view>
+        <view class="info-value">{{case.duration}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">语言要求</view>
+        <view class="info-value">{{case.languageReq}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">学费</view>
+        <view class="info-value">{{case.tuition}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">申请时间</view>
+        <view class="info-value">{{case.applicationTime}}</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">课程设置</view>
+      <view class="section-content">{{case.courseContent}}</view>
+    </view>
+
+    <view class="offer-section" bindtap="previewImage">
+      <view class="section-title">录取通知书</view>
+      <image class="offer-image" src="{{case.offerImage}}" mode="aspectFit"/>
+    </view>
+  </view>
+
+  <view class="bottom-buttons">
+    <button class="share-btn" open-type="share">分享案例</button>
+    <button class="home-btn" bindtap="goHome">返回首页</button>
+  </view>
+</view> 

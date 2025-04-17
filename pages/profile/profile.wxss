@@ -1,0 +1,155 @@
+.container {
+    min-height: 100vh;
+    background: var(--secondary-color);
+    padding: 16px;
+  }
+  
+  .user-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .user-section:active {
+    opacity: 0.8;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-right: 16px;
+  }
+  
+  .user-detail {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nickname {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 4px;
+  }
+  
+  .welcome {
+    font-size: 14px;
+    color: var(--text-gray);
+  }
+  
+  .exchange-rates {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 16px;
+  }
+  
+  .rate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .rate-item {
+    background: rgba(66, 185, 131, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  
+  .currency-name {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 4px;
+  }
+  
+  .currency-symbol {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin-bottom: 8px;
+  }
+  
+  .rate-value {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .rate-value.up {
+    color: #f56c6c;
+  }
+  
+  .rate-value.down {
+    color: #67c23a;
+  }
+  
+  .trend-arrow {
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  
+  .update-time {
+    font-size: 12px;
+    color: var(--text-gray);
+    text-align: right;
+    margin-top: 16px;
+  }
+  
+  .refresh-btn {
+    font-size: 12px;
+    color: var(--primary-color);
+    margin-left: 8px;
+    padding: 4px 8px;
+    background: rgba(66, 185, 131, 0.1);
+    border-radius: 4px;
+  }
+  
+  .refresh-btn:active {
+    opacity: 0.8;
+  }
+  
+  .custom-service-btn {
+    min-width: 96px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 20px;
+    background: #42B983;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 18px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(66, 185, 131, 0.2);
+    transition: all 0.3s ease;
+    margin-left: 16px;
+  }
+  
+  .custom-service-btn::after {
+    border: none;
+  }
+  
+  .custom-service-btn:active {
+    transform: translateY(1px);
+    opacity: 0.9;
+    background: #3aa876;
+  } 

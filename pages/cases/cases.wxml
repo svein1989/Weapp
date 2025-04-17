@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <van-search
+    value="{{ searchValue }}"
+    placeholder="搜索专业、学校或背景"
+    bind:change="onSearchChange"
+    bind:search="onSearch"
+    shape="round"
+    background="#ffffff"
+    use-action-slot
+  >
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
+
+  <!-- 案例列表 -->
+  <scroll-view 
+    class="cases-list" 
+    scroll-y 
+    bindscrolltolower="loadMore"
+    refresher-enabled
+    bindrefresherrefresh="onRefresh"
+    refresher-triggered="{{isRefreshing}}"
+  >
+    <view 
+      class="case-item" 
+      wx:for="{{ cases }}" 
+      wx:key="id"
+      bindtap="goToDetail"
+      data-id="{{ item.id }}"
+    >
+      <image class="university-logo" src="{{ item.universityLogo }}" mode="aspectFit"/>
+      <view class="case-info">
+        <view class="info-top">
+          <view class="major-name">{{ item.majorName }}</view>
+          <view class="major-name-en">{{ item.majorNameEn }}</view>
+          <view class="university-name">{{ item.universityName }}</view>
+        </view>
+        <view class="info-bottom">
+          <view class="publish-time">{{ item.publishTime }}</view>
+          <view class="background-preview">{{ item.backgroundPreview }}</view>
+        </view>
+      </view>
+      <view class="detail-arrow">详情 ></view>
+    </view>
+
+    <!-- 底部提示 -->
+    <view class="bottom-tip">
+      {{ hasMore ? '加载中...' : '我也是有底线的~' }}
+    </view>
+  </scroll-view>
+</view> 

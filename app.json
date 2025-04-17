@@ -1,12 +1,47 @@
 {
     "pages": [
-      "pages/index/index"
+      "pages/index/index",
+      "pages/article/article",
+      "pages/schools/schools",
+      "pages/schools/detail",
+      "pages/ranking/ranking",
+      "pages/experience/experience",
+      "pages/english/english",
+      "pages/consult/consult",
+      "pages/cases/cases",
+      "pages/cases/detail",
+      "pages/about/about",
+      "pages/profile/profile"
     ],
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "留学助手",
+      "navigationBarTitleText": "宝择留学",
       "navigationBarTextStyle": "black"
     },
-    "sitemapLocation": "sitemap.json"
+    "tabBar": {
+      "color": "#999999",
+      "selectedColor": "#42B983",
+      "backgroundColor": "#ffffff",
+      "borderStyle": "black",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "首页"
+        },
+        {
+          "pagePath": "pages/about/about",
+          "text": "关于我们"
+        },
+        {
+          "pagePath": "pages/profile/profile",
+          "text": "我的"
+        }
+      ]
+    },
+    "lazyCodeLoading": "requiredComponents",
+    "sitemapLocation": "sitemap.json",
+    "usingComponents": {
+      "van-search": "@vant/weapp/search/index"
+    }
   } 

@@ -1,0 +1,23 @@
+<view class="manage-container">
+  <view class="section">
+    <view class="section-title">文章置顶管理（最多5篇）</view>
+    <view class="article-list">
+      <view class="article-item" wx:for="{{ articles }}" wx:key="id">
+        <view class="article-info">
+          <image class="article-thumb" src="{{ item.thumbnail }}" mode="aspectFill"/>
+          <view class="article-meta">
+            <text class="article-title">{{ item.title }}</text>
+            <text class="article-date">{{ item.publishTime }}</text>
+            <text class="pin-count" wx:if="{{ item.isPinned }}">当前置顶：{{ pinnedCount }}/5</text>
+          </view>
+        </view>
+        <switch 
+          checked="{{ item.isPinned }}" 
+          bindchange="onPinnedChange" 
+          data-id="{{ item.id }}"
+          disabled="{{ pinnedCount >= 5 && !item.isPinned }}"
+        />
+      </view>
+    </view>
+  </view>
+</view> 

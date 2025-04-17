@@ -1,0 +1,37 @@
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-section" bindtap="{{!userInfo.nickName ? 'handleUserProfile' : ''}}">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl || 'cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/Screenshot 2025-03-06 at 13.21.22.png'}}" mode="aspectFill"/>
+      <view class="user-detail">
+        <text class="nickname">{{userInfo.nickName || '请登录'}}</text>
+        <text class="welcome" wx:if="{{userInfo.nickName}}">欢迎使用宝择留学</text>
+      </view>
+    </view>
+    <button
+      class="custom-service-btn"
+      wx:if="{{userInfo.nickName}}"
+      open-type="getPhoneNumber"
+      bindgetphonenumber="handleGetPhoneNumber"
+    >定制服务</button>
+  </view>
+
+  <!-- 汇率信息 -->
+  <view class="exchange-rates">
+    <view class="section-title">
+      实时汇率
+      <text class="refresh-btn" bindtap="updateExchangeRates">刷新</text>
+    </view>
+    <view class="rate-grid">
+      <view class="rate-item" wx:for="{{exchangeRates}}" wx:key="symbol">
+        <view class="currency-name">{{item.name}}</view>
+        <view class="currency-symbol">{{item.symbol}}</view>
+        <view class="rate-value {{item.trend}}">
+          {{item.rate}}
+          <text class="trend-arrow">{{item.trend === 'up' ? '↑' : (item.trend === 'down' ? '↓' : '-')}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="update-time">更新时间：{{lastUpdateTime}}</view>
+  </view>
+</view>

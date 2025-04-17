@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 地区选项卡 -->
+  <scroll-view 
+    class="region-tabs" 
+    scroll-x 
+    enable-flex 
+    scroll-with-animation
+    scroll-into-view="region-{{currentRegion}}"
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <view class="tabs-container">
+      <view 
+        wx:for="{{ regions }}" 
+        wx:key="id"
+        id="region-{{item.id}}"
+        class="region-tab {{ currentRegion === item.id ? 'active' : '' }}"
+        bindtap="switchRegion"
+        data-id="{{ item.id }}"
+      >
+        {{ item.name }}
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 搜索框 -->
+  <van-search
+    value="{{ searchValue }}"
+    placeholder="搜索学校名称、国家等"
+    show-action
+    bind:change="onInputChange"
+    bind:search="onSearch"
+    bind:cancel="onCancel"
+  />
+
+  <!-- 学校列表 -->
+  <view class="school-list">
+    <block wx:for="{{showFiltered ? filteredSchools : schools}}" wx:key="id">
+      <view class="school-item" bindtap="navigateToDetail" data-id="{{item.id}}">
+        <image class="school-logo" src="{{item.logo}}" mode="aspectFit"/>
+        <view class="school-info">
+          <view class="school-name">{{item.name}}</view>
+          <view class="school-location">{{item.country}}</view>
+          <view class="school-desc">{{item.description}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

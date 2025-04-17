@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="content">
+    <view class="title">预约咨询</view>
+    <view class="desc">扫描下方二维码，添加顾问企业微信进行咨询</view>
+    <image class="qrcode" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG1002.jpg" mode="widthFix"/>
+    <view class="tips">
+      <view class="tip-item">· 专业的留学顾问团队</view>
+      <view class="tip-item">· 一对一咨询服务</view>
+      <view class="tip-item">· 快速响应您的需求</view>
+    </view>
+  </view>
+</view> 

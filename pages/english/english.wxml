@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- 标题区域 -->
+  <view class="header">
+    <view class="title">语言服务版块</view>
+    <view class="subtitle">为您的留学梦想插上语言的翅膀</view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content">
+    <!-- 简介部分 -->
+    <view class="section">
+      <view class="section-content">
+        在全球化的教育浪潮中，留学已成为无数学子追求卓越、拓宽视野的重要途径。然而，语言障碍往往是获得海外名校直接录取 offer 的首要挑战。为此，宝择留学特别推出语言服务版块，旨在全面提升您的英语能力，确保您以最佳状态迎接留学生活，顺利实现梦想。
+      </view>
+    </view>
+
+    <!-- 课程体系部分 -->
+    <view class="section">
+      <view class="section-title">全方位课程体系，助力英语能力飞跃</view>
+      <view class="section-content">
+        我们的语言服务版块提供全面的英语考试备考课程，涵盖雅思、托福、领思、多邻国、PTE、剑桥英语等主流考试，助您在全球范围内游刃有余。此外，我们还提供申请学校面试辅导、留学后课业辅导、应聘面试辅导等增值服务，确保您在留学前、中、后各阶段都能获得专业支持，持续提升英语应用能力，无缝衔接海外学习与生活。
+      </view>
+    </view>
+
+    <!-- 师资力量部分 -->
+    <view class="section">
+      <view class="section-title">名校师资，精准把脉考试趋势</view>
+      <view class="section-content">
+        宝择留学的英语师资团队由全球顶尖学府的资深教师组成，包括墨尔本大学、KLC 伦敦国王学院、英国爱丁堡大学、美国石溪大学、香港大学、中国传媒大学、厦门大学等名校毕业生。他们拥有超过九年的出国考试教学经验，深谙考试趋势与评分标准，能够精准指导您的备考方向，确保您始终走在高效学习的前沿。
+      </view>
+    </view>
+
+    <!-- 个性化教学部分 -->
+    <view class="section">
+      <view class="section-title">个性化教学，量身定制成功之路</view>
+      <view class="section-content">
+        我们深知每位学生的学习需求与基础各不相同，因此采用针对性教学模式。入学前，我们通过专业测评诊断您的薄弱环节，量身定制个性化的学习方案。在授课过程中，教师会根据您的课堂表现和作业反馈实时优化教学内容，确保学习进度与吸收效率同步。考前，我们还提供模考复盘服务，帮助您在考试中发挥最佳水平，学员出分率高。
+      </view>
+    </view>
+
+    <!-- 课程形式部分 -->
+    <view class="section">
+      <view class="section-title">灵活多样的课程形式，满足您的学习需求</view>
+      <view class="section-content">
+        为了适应不同学生的学习习惯和时间安排，我们提供1V1、3-6 人小班、定制班级等多种教学形式，同时支持线上和线下课程辅导服务。无论您身处何地，都能享受到宝择留学的高品质教育资源，灵活安排学习时间，高效提升英语水平。
+      </view>
+    </view>
+
+    <!-- 结语部分 -->
+    <view class="section conclusion">
+      <view class="section-title">宝择留学：您的全球教育伙伴</view>
+      <view class="section-content">
+        秉持<text class="highlight">「专业至上、责任为本」</text>的理念，宝择留学已助力无数学子圆梦海外名校，同时为众多家族的教育传承提供高品质、可持续的解决方案。我们不仅是留学服务的提供者，更是您通往全球未来的桥梁。选择宝择留学，让我们携手共创您的留学梦想，开启无限可能的未来。
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部咨询按钮 -->
+  <view class="bottom-bar">
+    <view class="consult-btn" bindtap="showQRCode">
+      <van-icon name="chat-o" size="24px" color="#ffffff"/>
+      <text>在线咨询</text>
+    </view>
+  </view>
+
+  <!-- 咨询二维码弹窗 -->
+  <van-popup
+    show="{{ showQRCode }}"
+    round
+    position="center"
+    custom-style="width: 80%;"
+    bind:close="onQRCodeClose"
+  >
+    <view class="qrcode-popup">
+      <image class="qrcode-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG1002.jpg" mode="widthFix"/>
+      <text class="qrcode-tip">扫码添加企业微信咨询</text>
+    </view>
+  </van-popup>
+</view> 

@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "录取案例",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+      "van-search": "@vant/weapp/search/index"
+    }
+  } 

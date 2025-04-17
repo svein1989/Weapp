@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- QS Logo区域 -->
+  <view class="logo-section">
+    <image class="qs-logo" src="/images/ranking/qs-logo.png" mode="aspectFit"/>
+  </view>
+
+  <!-- 排名表格 -->
+  <view class="table-section">
+    <!-- 表头 -->
+    <view class="table-header">
+      <view class="th rank-col">排名</view>
+      <view class="th university-col">大学</view>
+      <view class="th region-col">地区</view>
+      <view class="th trend-col">排名升降</view>
+    </view>
+
+    <!-- 表格内容 -->
+    <scroll-view 
+      class="table-body" 
+      scroll-y 
+      bindscrolltolower="onScrollToLower"
+      refresher-enabled="{{true}}"
+      bindrefresherrefresh="onRefresh"
+      refresher-triggered="{{isRefreshing}}"
+      lower-threshold="50"
+    >
+      <view 
+        class="table-row" 
+        wx:for="{{rankings}}" 
+        wx:key="id"
+      >
+        <view class="td rank-col">{{item.rank}}</view>
+        <view class="td university-col">{{item.university}}</view>
+        <view class="td region-col">{{item.region}}</view>
+        <view class="td trend-col">
+          <view class="trend {{item.trend > 0 ? 'up' : (item.trend < 0 ? 'down' : 'same')}}">
+            {{item.trend > 0 ? '↑' : (item.trend < 0 ? '↓' : '-')}}
+            {{item.trend !== 0 ? Math.abs(item.trend) : ''}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部提示 -->
+      <view class="bottom-tip">
+        {{loading ? '加载中...' : (hasMore ? '上拉加载更多' : '我也是有底线的~')}}
+      </view>
+    </scroll-view>
+  </view>
+</view> 

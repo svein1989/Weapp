@@ -1,0 +1,50 @@
+.container {
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .content {
+    max-width: 600rpx;
+    width: 100%;
+    text-align: center;
+    padding: 40rpx;
+  }
+  
+  .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 20rpx;
+  }
+  
+  .desc {
+    font-size: 28rpx;
+    color: var(--text-gray);
+    margin-bottom: 40rpx;
+  }
+  
+  .qrcode {
+    width: 100%;
+    max-width: 480rpx;
+    margin: 0 auto 40rpx;
+    border-radius: 20rpx;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tips {
+    text-align: left;
+    padding: 20rpx;
+    background: rgba(66, 185, 131, 0.1);
+    border-radius: 16rpx;
+  }
+  
+  .tip-item {
+    font-size: 28rpx;
+    color: var(--text-color);
+    line-height: 2;
+    padding-left: 20rpx;
+  } 

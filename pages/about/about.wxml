@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="content">
+    <!-- Logo和标题 -->
+    <view class="header">
+      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/About/WechatIMG1061.jpg" mode="widthFix"/>
+      <view class="slogan">宝贵生活 美好选择</view>
+    </view>
+
+    <!-- 主体内容 -->
+    <view class="main-content">
+      <view class="paragraph">
+        宝择留学，作为一家深耕留学服务领域的卓越机构，自2014年起，凭借逾十年的行业积淀与精英团队，致力于为学生提供留学规划与全方位支持。
+      </view>
+      
+      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/About/WechatIMG1062.jpg" mode="widthFix"/>
+      
+      <view class="paragraph">
+        我们与美、国、澳、加、新加坡、马来西亚、泰国及日韩等热门留学国的顶尖院校建立战略合作，拥有丰富的全球教育资源。我们根据学生个人成绩、特长及职业目标，提供定制化留学解决方案，含选校策略、文书撰写、申请管理及留学后等一站式服务，确保学生融入海外生活。
+      </view>
+
+      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/About/WechatIMG1063.jpg" mode="widthFix"/>
+
+      <view class="projects">
+        <view class="project-title">明星项目：</view>
+        <view class="project-item">就业与移民导向：加拿大加西大学、加拿大尼加拉瓜瀑布大学。</view>
+        <view class="project-item">创业与职场竞争力：英国伦敦城市大学、英国奇切斯特大学、澳大利亚肯迪大学新加坡校区。更有艺术与语言突破的英国桑德兰大学新加坡校区。</view>
+        <view class="project-item">性价比最强的留学地：马来西亚公立大学，马来西亚英迪大学，泰国西那瓦大学以及日韩学校等</view>
+        <view class="project-item">低龄精英教育：牛津国际高中、英国德欧中学、英国牛津学院、加拿大女王学院、爱普森国际学校等。</view>
+        <view class="project-item">短期浸润体验：英国夏校、新加坡游学、莱佛士美国学校微留学、澳洲插班读书、新加坡南洋理工大学访问学者等项目。</view>
+      </view>
+
+      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/About/WechatIMG1064.jpg" mode="widthFix"/>
+
+      <view class="paragraph">
+        秉持专业至上、责任为本的理念，宝择留学已助力无数学子圆梦海外名校，同时为众多家族的教育传承提供高品质、可持续的解决方案。我们不仅是留学服务的提供者，更是通往全球未来的桥梁。
+      </view>
+    </view>
+
+    <!-- 底部信息 -->
+    <view class="footer">
+      <view class="info-title">
+        <image class="icon" src="https://cdn-icons-png.freepik.com/512/8347/8347452.png" mode="aspectFit"/>
+        总部信息
+      </view>
+      
+      <view class="info-item" bindtap="makePhoneCall">
+        <image class="icon" src="https://png.pngtree.com/element_our/20200702/ourmid/pngtree-phone-information-call-icon-image_2283766.jpg" mode="aspectFit"/>
+        +86 136 0603 0730
+      </view>
+      
+      <view class="info-item" bindtap="openLocation">
+        <image class="icon" src="https://png.pngtree.com/png-vector/20190418/ourmid/pngtree-vector-location-icon-png-image_951300.jpg" mode="aspectFit"/>
+        厦门市思明区钻石海岸
+      </view>
+
+      <view class="info-item" bindtap="followOfficialAccount">
+        <image class="icon" src="https://i.pinimg.com/736x/ca/80/7f/ca807f29ef3f278b6232a8284266ff8f.jpg" mode="aspectFit"/>
+        微信公众号：宝择留学
+      </view>
+      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG679.jpg" 
+      show-menu-by-longpress="{{true}}"
+      mode="widthFix"/>
+    </view>
+  </view>
+</view> 
