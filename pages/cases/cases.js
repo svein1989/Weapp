@@ -1,4 +1,4 @@
-const { cases: casesData } = require('../../data/casesData.js')
+const db = wx.cloud.database()
 
 Page({
   data: {
@@ -8,20 +8,76 @@ Page({
     currentPage: 1,
     hasMore: true,
     isRefreshing: false,
+    loading: true,
     allCases: [], // 存储所有案例数据
     originalCases: [] // 存储原始案例数据
   },
 
-  onLoad() {
-    this.setData({ 
-      allCases: casesData,
-      originalCases: casesData // 保存原始数据
-    }, () => {
-      this.loadCases()
-    })
+  async onLoad() {
+    await this.loadAllCases()
   },
 
-  // 加载案例数据
+  // 从云数据库加载所有案例数据
+  async loadAllCases() {
+    try {
+      wx.showLoading({
+        title: '加载中...',
+      })
+
+      // 获取数据总数
+      const countResult = await db.collection('caseData').count()
+      const total = countResult.total
+      
+      // 分批次获取所有数据
+      const batchTimes = Math.ceil(total / 100)
+      const tasks = []
+      
+      for (let i = 0; i < batchTimes; i++) {
+        const promise = db.collection('caseData')
+          .skip(i * 100)
+          .limit(100)
+          .get()
+        tasks.push(promise)
+      }
+
+      // 等待所有请求完成
+      const results = await Promise.all(tasks)
+      
+      // 合并所有数据
+      const casesData = results.reduce((acc, cur) => {
+        return acc.concat(cur.data)
+      }, [])
+
+      // 对案例数据进行预处理，提取预览信息
+      const processedCases = casesData.map(item => ({
+        ...item,
+        backgroundPreview: item.background ? item.background.substring(0, 50) + '...' : ''
+      }))
+      
+      this.setData({ 
+        allCases: processedCases,
+        originalCases: processedCases, // 保存原始数据
+        loading: false
+      }, () => {
+        this.loadCases()
+      })
+    } catch (err) {
+      console.error('获取案例数据失败：', err)
+      wx.showToast({
+        title: '加载失败',
+        icon: 'error'
+      })
+      this.setData({
+        loading: false,
+        allCases: [],
+        originalCases: []
+      })
+    } finally {
+      wx.hideLoading()
+    }
+  },
+
+  // 加载案例数据（分页）
   loadCases() {
     const { currentPage, pageSize, allCases, cases: currentCases } = this.data
     const start = (currentPage - 1) * pageSize
@@ -69,10 +125,10 @@ Page({
     // 从原始数据中搜索
     const filteredCases = this.data.originalCases.filter(item => {
       return (
-        item.majorName.toLowerCase().includes(searchKey) ||
-        item.majorNameEn.toLowerCase().includes(searchKey) ||
-        item.universityName.toLowerCase().includes(searchKey) ||
-        item.background.toLowerCase().includes(searchKey)
+        (item.majorName && item.majorName.toLowerCase().includes(searchKey)) ||
+        (item.majorNameEn && item.majorNameEn.toLowerCase().includes(searchKey)) ||
+        (item.universityName && item.universityName.toLowerCase().includes(searchKey)) ||
+        (item.background && item.background.toLowerCase().includes(searchKey))
       )
     })
 
@@ -93,7 +149,7 @@ Page({
       currentPage: 1,
       cases: []
     })
-    await this.loadCases()
+    await this.loadAllCases()  // 重新加载所有数据
     this.setData({ isRefreshing: false })
   },
 

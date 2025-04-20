@@ -72,7 +72,7 @@
     bind:close="onQRCodeClose"
   >
     <view class="qrcode-popup">
-      <image class="qrcode-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG1002.jpg" mode="widthFix"/>
+      <image class="qrcode-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG65.jpg" mode="widthFix"/>
       <text class="qrcode-tip">扫码添加企业微信咨询</text>
     </view>
   </van-popup>

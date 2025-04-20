@@ -1,4 +1,5 @@
-const schoolsData = require('../../data/schools.js')
+// 初始化云数据库
+const db = wx.cloud.database()
 
 // 修改默认图片路径
 const defaultLogo = 'https://img.yzcdn.cn/vant/logo.png'  // 临时使用在线图片
@@ -8,7 +9,7 @@ Page({
   data: {
     regions: [],
     schools: [],
-    currentRegion: null,  // 改名以匹配 wxml
+    currentRegion: null,
     searchValue: '',
     pageSize: 20,
     currentPage: 1,
@@ -21,16 +22,63 @@ Page({
   },
 
   onLoad() {
-    // 加载地区数据
-    this.setData({
-      regions: schoolsData.regions.sort((a, b) => a.priority - b.priority)
-    })
-    
-    // 直接从本地数据文件获取数据
-    this.setData({
-      schools: schoolsData.universities || [],
-      loading: false
-    })
+    this.loadData()
+  },
+
+  // 加载所有数据
+  async loadData() {
+    try {
+      this.setData({ loading: true })
+      
+      // 获取地区数据
+      const regionsRes = await db.collection('schools')
+        .where({
+          regions: db.command.exists(true)
+        })
+        .field({
+          regions: true
+        })
+        .get()
+      
+      if (regionsRes.data && regionsRes.data.length > 0) {
+        const sortedRegions = regionsRes.data[0].regions.sort((a, b) => a.priority - b.priority)
+        this.setData({ regions: sortedRegions })
+      }
+
+      // 获取学校数据
+      const schoolsRes = await db.collection('schools')
+        .where({
+          name: db.command.exists(true),
+          region: db.command.exists(true)
+        })
+        .field({
+          _id: false,
+          name: true,
+          logo: true,
+          location: true,
+          region: true,
+          introduction: true,
+          priority: true,
+          id: true
+        })
+        .get()
+
+      if (schoolsRes.data && schoolsRes.data.length > 0) {
+        const schools = schoolsRes.data.sort((a, b) => (a.priority || 0) - (b.priority || 0))
+        this.setData({ 
+          schools,
+          loading: false
+        })
+      } else {
+        throw new Error('未找到学校数据')
+      }
+    } catch (err) {
+      console.error('获取数据失败：', err)
+      this.setData({
+        error: '获取数据失败，请稍后重试',
+        loading: false
+      })
+    }
   },
 
   // 处理输入变化
@@ -54,8 +102,8 @@ Page({
     const filteredSchools = this.data.schools.filter(school => {
       return (
         (school.name && school.name.toLowerCase().includes(searchValue)) ||
-        (school.country && school.country.toLowerCase().includes(searchValue)) ||
-        (school.description && school.description.toLowerCase().includes(searchValue))
+        (school.location && school.location.toLowerCase().includes(searchValue)) ||
+        (school.introduction && school.introduction.toLowerCase().includes(searchValue))
       )
     })
 
@@ -75,13 +123,45 @@ Page({
   },
 
   // 获取学校数据
-  fetchSchools() {
+  async fetchSchools() {
     try {
-      // 使用本地数据
-      this.setData({
-        schools: schoolsData.universities,
-        loading: false
-      })
+      this.setData({ loading: true })
+      
+      const query = {
+        name: db.command.exists(true)
+      }
+      
+      // 如果有选中的地区，添加地区筛选条件
+      if (this.data.currentRegion) {
+        query.region = this.data.currentRegion
+      }
+      
+      const res = await db.collection('schools')
+        .where(query)
+        .field({
+          _id: false,
+          name: true,
+          logo: true,
+          location: true,
+          region: true,
+          introduction: true,
+          priority: true,
+          id: true
+        })
+        .get()
+      
+      if (res.data && res.data.length > 0) {
+        const schools = res.data.sort((a, b) => (a.priority || 0) - (b.priority || 0))
+        this.setData({ 
+          schools,
+          loading: false
+        })
+      } else {
+        this.setData({
+          schools: [],
+          loading: false
+        })
+      }
     } catch (err) {
       console.error('获取学校数据失败:', err)
       this.setData({
@@ -106,9 +186,9 @@ Page({
     })
   },
 
-  // 修改方法名以匹配 wxml 中的绑定
+  // 切换地区
   switchRegion(e) {
-    const regionId = parseInt(e.currentTarget.dataset.id)
+    const regionId = parseFloat(e.currentTarget.dataset.id)
     this.setData({
       currentRegion: regionId === this.data.currentRegion ? null : regionId,
       currentPage: 1
@@ -117,9 +197,10 @@ Page({
     })
   },
 
+  // 下拉刷新
   async onRefresh() {
     this.setData({ isRefreshing: true })
-    await this.fetchSchools()
+    await this.loadData()
     this.setData({ isRefreshing: false })
   },
 
@@ -134,7 +215,7 @@ Page({
   onLogoError(e) {
     const { index } = e.currentTarget.dataset
     const schools = this.data.schools
-    schools[index].logo = '/images/schools/default-logo.png'  // 设置默认图片
+    schools[index].logo = defaultLogo
     this.setData({ schools })
   }
 }) 

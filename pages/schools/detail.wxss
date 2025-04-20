@@ -1,245 +1,237 @@
+/* 页面容器 */
 .container {
-    min-height: 100vh;
-    background: var(--secondary-color);
-    padding-bottom: 60px;
-  }
-  
-  .content-scroll {
-    height: calc(100vh - 60px);
-  }
-  
-  /* 学校头部信息 */
-  .school-header {
-    position: relative;
-    width: 100%;
-    margin-bottom: 60px;
-  }
-  
-  .school-photo {
-    width: 100%;
-    height: 200px;
-    background: #f5f5f5;
-  }
-  
-  .school-info {
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    right: 0;
-    padding: 0 20px;
-    display: flex;
-    align-items: flex-end;
-    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9));
-    padding-top: 20px;
-  }
-  
-  .school-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .school-title {
-    flex: 1;
-    margin-left: 15px;
-    padding-bottom: 8px;
-  }
-  
-  .school-name {
-    display: block;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 4px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  }
-  
-  .school-location {
-    font-size: 14px;
-    color: var(--text-gray);
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  }
-  
-  /* 内容区域 */
-  .school-content {
-    padding: 20px;
-    background: #fff;
-    margin-top: 20px;
-  }
-  
-  /* 分隔的部分 */
-  .section {
-    margin-bottom: 24px;
-    position: relative;
-    padding-bottom: 24px;
-  }
-  
-  /* 添加分割线 */
-  .section:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 20px;
-    right: 20px;
-    height: 1px;
-    background: #f0f0f0;
-  }
-  
-  .section-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 12px;
-    padding-left: 12px;
-    border-left: 4px solid var(--primary-color);
-  }
-  
-  .introduction {
-    font-size: 14px;
-    color: var(--text-color);
-    line-height: 1.6;
-    padding: 0 4px;
-  }
-  
-  /* 专业列表 */
-  .major-list {
-    background: #fff;
-    padding: 0 4px;
-  }
-  
-  .major-item {
-    padding: 16px;
-    border-radius: 12px;
-    background: var(--light-gray);
-    margin-bottom: 12px;
-  }
-  
-  .major-header {
-    margin-bottom: 8px;
-  }
-  
-  .major-name {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-color);
-  }
-  
-  .major-details {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .detail-item {
-    flex: 1;
-    min-width: 150px;
-    margin-bottom: 4px;
-  }
-  
-  .label {
-    font-size: 14px;
-    color: var(--text-gray);
-  }
-  
-  .value {
-    font-size: 14px;
-    color: var(--text-color);
-  }
-  
-  /* 底部固定栏 */
-  .bottom-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background: rgba(66, 185, 131, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-    z-index: 100;
-  }
-  
-  /* 操作按钮样式 */
-  .action-btn {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-gray);
-  }
-  
-  /* 分隔线 */
-  .action-btn.share-btn::after {
-    content: '';
-    position: absolute;
-    right: 50%;
-    top: 15px;
-    bottom: 15px;
-    width: 1px;
-    background-color: rgba(66, 185, 131, 0.2);
-  }
-  
-  /* 图标和文字的样式 */
-  .action-btn van-icon {
-    margin-right: 6px;
-  }
-  
-  .action-btn text {
-    font-size: 14px;
-    color: var(--text-gray);
-  }
-  
-  /* 二维码弹窗 */
-  .qrcode-popup {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .qrcode-image {
-    width: 100%;
-    max-width: 240px;
-    margin-bottom: 16px;
-  }
-  
-  .qrcode-tip {
-    font-size: 14px;
-    color: var(--text-gray);
-  }
-  
-  /* 分享按钮样式重置 */
-  .action-btn.share-btn {
-    background: none;
-    padding: 0;
-    margin: 0;
-    line-height: normal;
-    border: none;
-    border-radius: 0;
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-gray);
-  }
-  
-  .action-btn.share-btn::after {
-    display: none;
-  }
-  
-  /* 修改分隔线样式，确保它显示在正确的位置 */
-  .action-btn.share-btn::before {
-    content: '';
-    position: absolute;
-    right: 50%;
-    top: 15px;
-    bottom: 15px;
-    width: 1px;
-    background-color: rgba(66, 185, 131, 0.2);
-  }
+  min-height: 100vh;
+  background-color: #f7f8fa;
+  padding-bottom: 100px; /* 为底部栏留出空间 */
+}
+
+/* 加载和错误状态 */
+.loading-container,
+.error-container,
+.empty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+/* 学校头部 */
+.school-header {
+  position: relative;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.school-photo {
+  width: 100%;
+  height: 200px;
+  background-color: #f5f5f5;
+}
+
+.school-info {
+  position: relative;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.school-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 15px;
+  border: 1px solid #eee;
+}
+
+.school-title {
+  flex: 1;
+}
+
+.school-name {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.school-location {
+  display: block;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 内容区域 */
+.content-section {
+  background: #fff;
+  padding: 15px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 15px 0 10px;
+  padding-left: 10px;
+  border-left: 4px solid #1989fa;
+}
+
+.section-content {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* 联系信息 */
+.contact-info {
+  margin-top: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background: #f8f8f8;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.contact-item van-icon {
+  margin-right: 8px;
+}
+
+/* 专业列表 */
+.major-list {
+  margin-top: 10px;
+}
+
+.major-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.major-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.major-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.major-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.detail-item {
+  font-size: 13px;
+  color: #666;
+}
+
+.detail-item .label {
+  color: #999;
+  margin-right: 5px;
+}
+
+/* 图片展示 */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.gallery-item image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 底部栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.action-btn text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.share-btn {
+  width: auto !important;
+  font-weight: normal;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+/* 二维码弹窗 */
+.qrcode-popup {
+  padding: 20px;
+  text-align: center;
+}
+
+.qrcode-image {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.qrcode-tip {
+  font-size: 14px;
+  color: #666;
+}
+
+/* van-tabs 样式调整 */
+:root {
+  --tabs-bottom-bar-color: #1989fa;
+}
    

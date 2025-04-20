@@ -1,6 +1,20 @@
 <view class="container">
-  <!-- 主要内容区域 -->
-  <scroll-view class="content-scroll" scroll-y>
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <van-loading color="#1989fa">加载中...</van-loading>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error-container" wx:elif="{{error}}">
+    <van-empty image="error" description="{{error}}">
+      <view slot="bottom">
+        <van-button round type="primary" bind:tap="retryLoad">重新加载</van-button>
+      </view>
+    </van-empty>
+  </view>
+
+  <!-- 内容区域 -->
+  <block wx:elif="{{school}}">
     <!-- 学校基本信息 -->
     <view class="school-header">
       <image 
@@ -10,7 +24,7 @@
         binderror="onImageError"
         data-type="photo"
       />
-      <view class="school-info" style="height: 202rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 306rpx; position: absolute">
+      <view class="school-info">
         <image 
           class="school-logo" 
           src="{{ school.logo }}" 
@@ -25,36 +39,85 @@
       </view>
     </view>
 
-    <!-- 学校介绍 -->
-    <view class="school-content">
-      <view class="section">
-        <view class="section-title">学校简介</view>
-        <text class="introduction">{{ school.introduction }}</text>
-      </view>
-
-      <!-- 专业信息 -->
-      <view class="section">
-        <view class="section-title">开设专业</view>
-        <view class="major-list">
-          <view class="major-item" wx:for="{{ school.majors }}" wx:key="name">
-            <view class="major-header">
-              <text class="major-name">{{ item.name }}</text>
-            </view>
-            <view class="major-details">
-              <view class="detail-item">
-                <text class="label">学制：</text>
-                <text class="value">{{ item.duration }}</text>
+    <!-- 标签页导航 -->
+    <van-tabs active="{{currentTab}}" bind:change="switchTab" sticky>
+      <!-- 学校简介 -->
+      <van-tab title="{{tabs[0]}}">
+        <view class="content-section">
+          <view class="section-title">学校简介</view>
+          <text class="section-content">{{school.introduction}}</text>
+          
+          <block wx:if="{{school.website || school.contact}}">
+            <view class="section-title">联系方式</view>
+            <view class="contact-info">
+              <view wx:if="{{school.website}}" class="contact-item" bind:tap="copyText" data-text="{{school.website}}">
+                <van-icon name="link" />
+                <text>官方网站：{{school.website}}</text>
               </view>
-              <view class="detail-item">
-                <text class="label">学费：</text>
-                <text class="value">{{ item.tuition }}</text>
+              <view wx:if="{{school.contact}}" class="contact-item" bind:tap="copyText" data-text="{{school.contact}}">
+                <van-icon name="phone" />
+                <text>联系方式：{{school.contact}}</text>
               </view>
             </view>
-          </view>
+          </block>
         </view>
+      </van-tab>
+
+      <!-- 专业介绍 -->
+      <van-tab title="{{tabs[1]}}">
+        <view class="content-section">
+          <block wx:if="{{school.majors && school.majors.length > 0}}">
+            <view class="major-list">
+              <view class="major-item" wx:for="{{ school.majors }}" wx:key="name">
+                <view class="major-name">{{ item.name }}</view>
+                <view class="major-description">{{ item.description }}</view>
+                <view class="major-details">
+                  <view class="detail-item" wx:if="{{item.duration}}">
+                    <text class="label">学制：</text>
+                    <text class="value">{{ item.duration }}</text>
+                  </view>
+                  <view class="detail-item" wx:if="{{item.tuition}}">
+                    <text class="label">学费：</text>
+                    <text class="value">{{ item.tuition }}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <van-empty wx:else description="暂无专业信息" />
+        </view>
+      </van-tab>
+
+      <!-- 图片展示 -->
+      <van-tab title="{{tabs[2]}}">
+        <view class="content-section">
+          <block wx:if="{{school.gallery && school.gallery.length > 0}}">
+            <view class="gallery-grid">
+              <view 
+                wx:for="{{school.gallery}}" 
+                wx:key="*this" 
+                class="gallery-item"
+                bind:tap="previewImage"
+                data-index="{{index}}"
+              >
+                <image src="{{item}}" mode="aspectFill"></image>
+              </view>
+            </view>
+          </block>
+          <van-empty wx:else description="暂无图片" />
+        </view>
+      </van-tab>
+    </van-tabs>
+  </block>
+
+  <!-- 无数据状态 -->
+  <view class="empty-container" wx:else>
+    <van-empty description="未找到学校信息">
+      <view slot="bottom">
+        <van-button round type="primary" bind:tap="goBack">返回</van-button>
       </view>
-    </view>
-  </scroll-view>
+    </van-empty>
+  </view>
 
   <!-- 底部固定栏 -->
   <view class="bottom-bar">
@@ -81,7 +144,7 @@
     bind:close="onQRCodeClose"
   >
     <view class="qrcode-popup">
-      <image class="qrcode-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG1002.jpg" mode="widthFix"/>
+      <image class="qrcode-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG65.jpg" mode="widthFix"/>
       <text class="qrcode-tip">扫码添加企业微信咨询</text>
     </view>
   </van-popup>

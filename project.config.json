@@ -40,12 +40,12 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "ignoreUploadUnusedFiles": false
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
   "appid": "wx9d7a0786b3d9b94f",
-  "projectname": "留学助手",
+  "projectname": "宝择留学",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
