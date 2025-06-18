@@ -57,7 +57,7 @@
         <image class="icon" src="https://i.pinimg.com/736x/ca/80/7f/ca807f29ef3f278b6232a8284266ff8f.jpg" mode="aspectFit"/>
         微信公众号：宝择留学
       </view>
-      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG679.jpg" 
+      <image class="content-image" src="cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/WechatIMG114.jpg" 
       show-menu-by-longpress="{{true}}"
       mode="widthFix"/>
     </view>

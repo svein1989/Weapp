@@ -1,4 +1,4 @@
-import articles from '../../data/articles.js'
+const db = wx.cloud.database()
 
 Page({
     data: {
@@ -16,7 +16,8 @@ Page({
       pinnedPages: [], // 置顶文章
       subPages: [],    // 普通文章
       pageNum: 1,
-      hasMore: true
+      hasMore: true,
+      loading: false
     },
   
     onLoad() {
@@ -27,21 +28,44 @@ Page({
       this.loadArticles()
     },
   
-    loadArticles() {
-      // 从 articles.js 加载文章并分类
-      const pinnedArticles = articles.filter(article => article.isPinned)
-      const normalArticles = articles.filter(article => !article.isPinned)
-      
-      // 按发布时间倒序排序
-      const sortByDate = (a, b) => new Date(b.publishTime) - new Date(a.publishTime)
-      pinnedArticles.sort(sortByDate)
-      normalArticles.sort(sortByDate)
+    async loadArticles() {
+      if (this.data.loading || !this.data.hasMore) return
 
-      this.setData({
-        pinnedPages: pinnedArticles.slice(0, 5), // 最多显示5个置顶
-        subPages: normalArticles,
-        hasMore: false // 因为是静态数据，所以没有更多了
-      })
+      try {
+        this.setData({ loading: true })
+
+        // 从云数据库获取文章
+        const res = await db.collection('articles')
+          .orderBy('publishTime', 'desc')
+          .get()
+
+        if (res.data && res.data.length > 0) {
+          // 分离置顶和普通文章
+          const pinnedArticles = res.data.filter(article => article.isPinned)
+          const normalArticles = res.data.filter(article => !article.isPinned)
+
+          this.setData({
+            pinnedPages: pinnedArticles.slice(0, 5), // 最多显示5个置顶
+            subPages: normalArticles,
+            hasMore: false, // 一次性加载所有文章，所以没有更多了
+            loading: false
+          })
+        } else {
+          this.setData({
+            hasMore: false,
+            loading: false
+          })
+        }
+      } catch (err) {
+        console.error('获取文章列表失败：', err)
+        wx.showToast({
+          title: '加载失败',
+          icon: 'error'
+        })
+        this.setData({
+          loading: false
+        })
+      }
     },
   
     onGridItemClick(e) {
@@ -109,5 +133,11 @@ Page({
       this.setData({
         activeTab: 0
       })
+    },
+
+    // 下拉刷新
+    async onPullDownRefresh() {
+      await this.loadArticles()
+      wx.stopPullDownRefresh()
     }
 }) 

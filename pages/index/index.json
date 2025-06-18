@@ -1,5 +1,6 @@
 {
     "navigationBarTitleText": "宝择留学",
+    "enablePullDownRefresh": true,
     "usingComponents": {
       "van-icon": "@vant/weapp/icon/index"
     }
