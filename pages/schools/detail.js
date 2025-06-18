@@ -176,11 +176,24 @@ Page({
     })
   },
 
-  onShareAppMessage() {
-    const school = this.data.school
+  onShareAppMessage() { 
+    const caseData = this.data.case;
     return {
-      title: school ? `${school.name} - 学校详情` : '学校详情',
-      path: `/pages/schools/detail?id=${school ? school.id : ''}`
-    }
-  }
+      title: caseData ? `${caseData.universityName}录取案例` : '宝择留学助手',
+      path: `/pages/cases/detail?id=${caseData?.id || ''}`,
+      imageUrl: caseData?.offerImage || '/images/default-share.png' // 添加图片
+    };
+  },
+
+  // 分享到朋友圈（核心修复）
+  onShareTimeline() { 
+    console.log('[Debug] onShareTimeline 触发，当前数据:', this.data.case); // 日志验证
+    
+    const caseData = this.data.case;
+    return {
+      title: caseData ? `${caseData.universityName}录取案例` : '宝择留学助手',
+      query: `id=${caseData?.id || ''}`, // 必须与 onShareAppMessage 的 path 参数一致
+      imageUrl: caseData?.offerImage || 'cloud://cloud1-7goau2ke9656707c.636c-cloud1-7goau2ke9656707c-1346981458/logo.jpg' // 必须添加
+    };
+  },
 }) 
